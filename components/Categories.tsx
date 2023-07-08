@@ -1,7 +1,6 @@
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-
 import { categoryFilters } from "@/constant"
 
 const Categories = () => {
@@ -11,13 +10,27 @@ const Categories = () => {
 
   const category = searchParams.get("category")
 
-  const handleTags = (item: string) => {
-    router.push(`${pathName}?category=${item}`)
+  const handleTags = (filter: string) => {
+    if (filter === "All") {
+      router.push(pathName)
+    } else {
+      router.push(`${pathName}?category=${filter}`)
+    }
   }
 
   return (
     <div className="flex-wrap w-full gap-5 flexBetween">
       <ul className="flex gap-2 overflow-auto">
+        <button
+          key="All"
+          type="button"
+          onClick={() => handleTags("All")}
+          className={`${
+            category === null ? "bg-light-white-300 font-medium" : "font-normal"
+          } px-4 py-3 rounded-lg capitalize whitespace-nowrap`}
+        >
+          All
+        </button>
         {categoryFilters.map((filter) => (
           <button
             key={filter}

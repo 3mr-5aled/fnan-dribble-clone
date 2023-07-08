@@ -1,4 +1,5 @@
 import { footerLinks } from "@/constant"
+import { fetchAllProjectsCount } from "@/lib/actions"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -20,7 +21,9 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
   </div>
 )
 
-const Footer = () => {
+const Footer = async () => {
+  const count = (await fetchAllProjectsCount()) as string
+
   return (
     <footer className="flexStart footer">
       <div className="flex flex-col gap-12 w-full">
@@ -69,7 +72,7 @@ const Footer = () => {
       <div className="flexBetween footer_copyright">
         <p>© 2023 Fnan. All rights reserved.</p>
         <p className="text-gray">
-          <span className="text-black font-semibold px-1">10,214</span>
+          <span className="text-black font-semibold px-1">{count}</span>
           projects submitted
         </p>
       </div>
