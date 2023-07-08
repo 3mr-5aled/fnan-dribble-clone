@@ -1,8 +1,6 @@
-"use client"
-
 import Image from "next/image"
 import React, { ChangeEvent, FormEvent, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/router"
 
 import FormField from "./FormField"
 import Button from "./Button"
@@ -43,7 +41,6 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
     if (!file.type.includes("image")) {
       alert("Please upload an image!")
-
       return
     }
 
@@ -53,9 +50,12 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
     reader.onload = () => {
       const result = reader.result as string
-
       handleStateChange("image", result)
     }
+  }
+
+  const refreshData = () => {
+    router.replace(router.asPath)
   }
 
   const handleFormSubmit = async (e: FormEvent) => {
@@ -68,13 +68,13 @@ const ProjectForm = ({ type, session, project }: Props) => {
     try {
       if (type === "create") {
         await createNewProject(form, session?.user?.id, token)
-
+        refreshData()
         router.push("/")
       }
 
       if (type === "edit") {
         await updateProject(form, project?.id as string, token)
-
+        refreshData()
         router.push("/")
       }
     } catch (error) {
