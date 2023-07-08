@@ -1,4 +1,4 @@
-import { footerLinks } from "@/constants"
+import { footerLinks } from "@/constant"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -27,8 +27,8 @@ const Footer = () => {
         <div className="flex items-start flex-col">
           <Image src="/logo-purple.svg" width={115} height={38} alt="Fnan" />
           <p className="text-start text-sm font-normal mt-5 max-w-xs">
-            Flexibble is the world's leading community for creatives to share,
-            grow, and get hired.
+            Fnan is the world's leading community for creatives to share, grow,
+            and get hired.
           </p>
         </div>
         <div className="flex flex-wrap gap-12">
