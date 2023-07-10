@@ -1,7 +1,8 @@
+"use client"
+
 import Image from "next/image"
 import React, { ChangeEvent, FormEvent, useState } from "react"
-import { useRouter } from "next/router"
-
+import { useRouter } from "next/navigation"
 import FormField from "./FormField"
 import Button from "./Button"
 import CustomMenu from "./CustomMenu"
@@ -54,9 +55,9 @@ const ProjectForm = ({ type, session, project }: Props) => {
     }
   }
 
-  const refreshData = () => {
-    router.replace(router.asPath)
-  }
+  // const refreshData = () => {
+  //   router.replace(router.asPath)
+  // }
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -69,11 +70,13 @@ const ProjectForm = ({ type, session, project }: Props) => {
       if (type === "create") {
         await createNewProject(form, session?.user?.id, token)
         router.push("/")
+        router.refresh()
       }
 
       if (type === "edit") {
         await updateProject(form, project?.id as string, token)
         router.push("/")
+        router.refresh()
       }
     } catch (error) {
       alert(

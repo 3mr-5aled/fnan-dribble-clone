@@ -12,7 +12,7 @@ export const createProjectMutation = `
 			}
 		}
 	}
-`;
+`
 
 export const updateProjectMutation = `
 	mutation UpdateProject($id: ID!, $input: ProjectUpdateInput!) {
@@ -28,7 +28,7 @@ export const updateProjectMutation = `
 			}
 		}
 	}
-`;
+`
 
 export const deleteProjectMutation = `
   mutation DeleteProject($id: ID!) {
@@ -36,8 +36,8 @@ export const deleteProjectMutation = `
       deletedId
     }
   }
-`;
-      
+`
+
 export const createUserMutation = `
 	mutation CreateUser($input: UserCreateInput!) {
 		userCreate(input: $input) {
@@ -52,7 +52,7 @@ export const createUserMutation = `
 			}
 		}
 	}
-`;
+`
 
 export const projectsQuery = `
   query getProjects($category: String, $endcursor: String) {
@@ -82,7 +82,7 @@ export const projectsQuery = `
       }
     }
   }
-`;
+`
 
 export const getProjectByIdQuery = `
   query GetProjectById($id: ID!) {
@@ -102,7 +102,7 @@ export const getProjectByIdQuery = `
       }
     }
   }
-`;
+`
 
 export const getUserQuery = `
   query GetUser($email: String!) {
@@ -116,8 +116,8 @@ export const getUserQuery = `
       linkedInUrl
     }
   }
-`;
-      
+`
+
 export const getProjectsOfUserQuery = `
   query getUserProjects($id: ID!, $last: Int = 4) {
     user(by: { id: $id }) {
@@ -139,4 +139,4 @@ export const getProjectsOfUserQuery = `
       }
     }
   }
-`;
+`
